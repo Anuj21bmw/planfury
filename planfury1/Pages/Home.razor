@@ -660,6 +660,33 @@
         text-align: center;
     }
 
+    .privacy-submenu {
+        display: none;
+        position: absolute;
+        background: white;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        padding: 0.5rem 0;
+        min-width: 200px;
+        z-index: 1000;
+    }
+
+        .privacy-submenu.active {
+            display: block;
+        }
+
+        .privacy-submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #333 !important;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+            .privacy-submenu a:hover {
+                background: #f8f9fa;
+                color: #ff6b35 !important;
+            }
     /* Contact Sidebar */
     .contact-sidebar {
         position: fixed;
@@ -1171,7 +1198,13 @@
                 <ul>
                     <li><a href="#" onclick="toggleContactSidebar(); return false;">Contact</a></li>
                     <li><a href="#">Help Center</a></li>
-                    <li><a href="/app/bmstasktracker/privacypolicy">Privacy Policy</a></li>
+                    <li style="position: relative;">
+    <a href="#" onclick="togglePrivacyMenu(event)">Privacy Policy</a>
+    <div class="privacy-submenu" id="privacySubmenu">
+        <a href="/app/bmstasktracker/privacypolicy">BMS</a>
+        <a href="/app/invoicing/privacypolicy">Invoicing</a>
+    </div>
+</li>
                     <li><a href="#">Terms of Service</a></li>
                 </ul>
             </div>
@@ -1403,5 +1436,25 @@
     // Initialize everything when DOM is loaded
     document.addEventListener('DOMContentLoaded', function () {
         initCarousel();
+    });
+</script>
+
+<script>
+    
+function togglePrivacyMenu(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const submenu = document.getElementById('privacySubmenu');
+    submenu.classList.toggle('active');
+}
+
+    // Close privacy submenu when clicking outside
+    document.addEventListener('click', function (e) {
+        const submenu = document.getElementById('privacySubmenu');
+        const privacyLink = e.target.closest('li')?.querySelector('[onclick*="togglePrivacyMenu"]');
+
+        if (submenu && !e.target.closest('.privacy-submenu') && e.target !== privacyLink) {
+            submenu.classList.remove('active');
+        }
     });
 </script>
