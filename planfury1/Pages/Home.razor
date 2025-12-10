@@ -71,6 +71,69 @@
                 color: #ff6b35;
             }
 
+    .get-started-icons {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .icon-link {
+        position: relative;
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px; /* Rounded square */
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        background: white;
+    }
+
+        .icon-link img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Shows full icon */
+            padding: 3px; /* Prevents cutting */
+        }
+
+        .icon-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+       
+
+    .icon-tooltip {
+        position: absolute;
+        bottom: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(51, 51, 51, 0.95);
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 5px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s, bottom 0.3s;
+    }
+
+    .icon-link:hover .icon-tooltip {
+        opacity: 1;
+        bottom: -40px;
+    }
+
+    @@media (max-width: 768px) {
+    .get-started-icons {
+        gap: 0.3rem;
+    }
+    
+    .icon-link {
+        width: 35px;
+        height: 35px;
+    }
+}
     .cta-button {
         background: #ff6b35;
         color: white;
@@ -998,7 +1061,20 @@
                 <li><a href="#" onclick="toggleContactSidebar(); return false;">Contact</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="#products" class="cta-button">Get Started</a>
+                <div class="get-started-icons">
+                    <a href="https://invoicing.planfury.com" class="icon-link" title="Invoicing for Website">
+                        <img src="Img/new planfuryyylogog image.png" alt="Website">
+                        <span class="icon-tooltip">Invoicing for Website</span>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.companyname.invoice.mobileapp&pcampaignid=web_share" class="icon-link" title="Invoicing for Android">
+                        <img src="Img/newplaystore.png" alt="Android">
+                        <span class="icon-tooltip">Invoicing for Android</span>
+                    </a>
+                    <a href="https://apps.apple.com/in/app/planfury-invoicing/id6754972187" class="icon-link" title="Invoicing for iOS">
+                        <img src="Img/apppstore.png" alt="iOS">
+                        <span class="icon-tooltip">Invoicing for IOS</span>
+                    </a>
+                </div>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
             </div>
         </nav>
@@ -1433,20 +1509,54 @@
         }
     });
 
+    // Language detection and translation
+    function detectLanguage() {
+        // Check browser language
+        const userLang = navigator.language || navigator.userLanguage;
+        return userLang.toLowerCase().startsWith('nl') ? 'nl' : 'en';
+    }
+
+    // Translations object
+    const translations = {
+        en: {
+            invoicingWebsite: "Invoicing for Website",
+            invoicingAndroid: "Invoicing for Android",
+            invoicingIOS: "Invoicing for IOS"
+        },
+        nl: {
+            invoicingWebsite: "Facturering voor Website",
+            invoicingAndroid: "Facturering voor Android",
+            invoicingIOS: "Facturering voor IOS"
+        }
+    };
+
+    // Apply translations on page load
+    function applyTranslations() {
+        const lang = detectLanguage();
+        const tooltips = document.querySelectorAll('.icon-tooltip');
+
+        if (tooltips.length >= 3) {
+            tooltips[0].textContent = translations[lang].invoicingWebsite;
+            tooltips[1].textContent = translations[lang].invoicingAndroid;
+            tooltips[2].textContent = translations[lang].invoicingIOS;
+        }
+    }
+
     // Initialize everything when DOM is loaded
     document.addEventListener('DOMContentLoaded', function () {
         initCarousel();
+        applyTranslations();
     });
 </script>
 
 <script>
-    
-function togglePrivacyMenu(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const submenu = document.getElementById('privacySubmenu');
-    submenu.classList.toggle('active');
-}
+
+    function togglePrivacyMenu(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const submenu = document.getElementById('privacySubmenu');
+        submenu.classList.toggle('active');
+    }
 
     // Close privacy submenu when clicking outside
     document.addEventListener('click', function (e) {
