@@ -213,7 +213,7 @@
             background: #e55a2b;
         }
 
-    /* Mobile Menu */
+    /* Mobile Menu - Fixed styles */
     .mobile-menu-toggle {
         display: none;
         background: none;
@@ -221,10 +221,23 @@
         font-size: 1.5rem;
         cursor: pointer;
         color: #333;
+        padding: 0.5rem;
+        border-radius: 4px;
+        transition: background 0.3s;
+        z-index: 1001;
+        position: relative;
     }
 
+        .mobile-menu-toggle:hover {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .mobile-menu-toggle:focus {
+            outline: none;
+            background: rgba(255, 107, 53, 0.1);
+        }
+
     .mobile-menu {
-        display: none;
         position: fixed;
         top: 0;
         left: 0;
@@ -232,18 +245,27 @@
         height: 100%;
         background: rgba(0,0,0,0.8);
         z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
     }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
     .mobile-menu-content {
         position: absolute;
         top: 0;
-        right: -300px;
+        right: -100%;
         width: 300px;
         height: 100%;
         background: white;
         transition: right 0.3s ease;
         padding: 2rem;
         overflow-y: auto;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
     }
 
     .mobile-menu.active .mobile-menu-content {
@@ -262,12 +284,33 @@
     .mobile-menu-close {
         background: none;
         border: none;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 50%;
+        transition: background 0.3s;
+        color: #666;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+
+        .mobile-menu-close:hover {
+            background: rgba(255, 107, 53, 0.1);
+            color: #ff6b35;
+        }
+
+        .mobile-menu-close:focus {
+            outline: none;
+            background: rgba(255, 107, 53, 0.1);
+        }
 
     .mobile-menu-items {
         list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
         .mobile-menu-items li {
@@ -280,8 +323,9 @@
             font-size: 1.1rem;
             font-weight: 500;
             display: block;
-            padding: 0.5rem 0;
+            padding: 0.75rem 0;
             transition: color 0.3s;
+            border-bottom: 1px solid #f0f0f0;
         }
 
             .mobile-menu-items a:hover {
@@ -318,13 +362,28 @@
         overflow: hidden;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         background: white;
+        text-decoration: none;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
     }
+
+        .mobile-icon-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .mobile-icon-link:active {
+            transform: translateY(0);
+        }
 
         .mobile-icon-link img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             padding: 3px;
+            pointer-events: none;
         }
 
     /* Animated Text Carousel Hero Section */
@@ -992,6 +1051,11 @@
             width: 100%;
             right: -100%;
         }
+
+        .mobile-menu-content {
+            width: 100%;
+            right: -100%;
+        }
     }
 
     @@media (max-width: 480px) {
@@ -1019,6 +1083,10 @@
         .product-icon img {
             width: 150px;
             height: 150px;
+        }
+
+        .mobile-menu-content {
+            padding: 1.5rem;
         }
     }
 </style>
@@ -1085,12 +1153,16 @@
 
                 <a href="https://play.google.com/store/apps/details?id=com.planfury.tasktracker"
                    class="mobile-icon-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
                    title="Planfury Task Tracker Play Store">
                     <img src="Img/newplaystore.png" alt="Android">
                 </a>
 
                 <a href="https://apps.apple.com/in/app/planfury-task-tracker/id6754032458"
                    class="mobile-icon-link"
+                   target="_blank" 
+                   rel="noopener noreferrer"
                    title="Planfury Task Tracker App Store">
                     <img src="Img/apppstore.png" alt="iOS">
                 </a>
@@ -1100,16 +1172,22 @@
             <div class="mobile-dropdown-icons">
                 <a href="https://invoicing.planfury.com"
                    class="mobile-icon-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
                    title="Planfury Invoicing Web App">
                     <img src="Img/new planfuryyylogog image.png" alt="Website">
                 </a>
                 <a href="https://play.google.com/store/apps/details?id=com.planfury.invoicing&pcampaignid=web_share"
                    class="mobile-icon-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
                    title="Planfury Invoicing Play Store">
                     <img src="Img/newplaystore.png" alt="Android">
                 </a>
                 <a href="https://apps.apple.com/in/app/planfury-invoicing/id6754972187"
                    class="mobile-icon-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
                    title="Planfury Invoicing App Store">
                     <img src="Img/apppstore.png" alt="iOS">
                 </a>
@@ -1181,7 +1259,6 @@
                             <span class="product-icon-tooltip">Planfury Windows App</span>
                         </a>
 
-
                         <div class="product-icons">
                             <a href="https://play.google.com/store/apps/details?id=com.planfury.tasktracker"
                                class="product-icon-link"
@@ -1201,7 +1278,7 @@
 
                 </div>
 
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">☰</button>
             </div>
         </nav>
     </div>
@@ -1517,15 +1594,24 @@
         }
     });
 
-    // Mobile menu toggle
+    // Fixed Mobile menu toggle function
     function toggleMobileMenu() {
+        console.log('Mobile menu toggle clicked'); // Debug line
         const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (!mobileMenu) {
+            console.error('Mobile menu element not found');
+            return;
+        }
+        
         mobileMenu.classList.toggle('active');
-
+        
         if (mobileMenu.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
+            console.log('Mobile menu opened');
         } else {
             document.body.style.overflow = 'auto';
+            console.log('Mobile menu closed');
         }
     }
 
@@ -1533,6 +1619,11 @@
     function toggleContactSidebar() {
         const contactSidebar = document.getElementById('contactSidebar');
         const contactOverlay = document.getElementById('contactOverlay');
+
+        if (!contactSidebar || !contactOverlay) {
+            console.error('Contact sidebar elements not found');
+            return;
+        }
 
         contactSidebar.classList.toggle('active');
         contactOverlay.classList.toggle('active');
@@ -1544,12 +1635,32 @@
         }
     }
 
-    document.getElementById('mobileMenu').addEventListener('click', function (e) {
-        if (e.target === this) {
-            toggleMobileMenu();
+    // Close mobile menu when clicking on overlay
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function (e) {
+                // Close menu only if clicking on the overlay, not the content or links
+                if (e.target === this) {
+                    toggleMobileMenu();
+                }
+            });
+        }
+
+        // Prevent mobile menu from closing when clicking on product icons
+        const mobileMenuContent = document.querySelector('.mobile-menu-content');
+        if (mobileMenuContent) {
+            mobileMenuContent.addEventListener('click', function(e) {
+                // Allow normal link behavior, don't close menu automatically for external links
+                if (e.target.closest('.mobile-icon-link') || e.target.closest('.product-label') || e.target.closest('.windows-app-link')) {
+                    console.log('Link in mobile menu clicked, not closing menu');
+                }
+            });
         }
     });
 
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -1569,12 +1680,14 @@
         });
     });
 
+    // Newsletter form submission
     document.querySelector('.newsletter-form').addEventListener('submit', function (e) {
         e.preventDefault();
         alert('Thank you for subscribing! We will keep you updated with the latest news from Planfury.');
         this.reset();
     });
 
+    // Header scroll effect
     window.addEventListener('scroll', function () {
         const header = document.querySelector('.header');
         if (window.scrollY > 100) {
@@ -1586,21 +1699,28 @@
         }
     });
 
+    // Close mobile menu on window resize
     window.addEventListener('resize', function () {
         if (window.innerWidth > 768) {
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         }
     });
 
+    // Privacy menu toggle
     function togglePrivacyMenu(e) {
         e.preventDefault();
         e.stopPropagation();
         const submenu = document.getElementById('privacySubmenu');
-        submenu.classList.toggle('active');
+        if (submenu) {
+            submenu.classList.toggle('active');
+        }
     }
 
+    // Close privacy submenu when clicking outside
     document.addEventListener('click', function (e) {
         const submenu = document.getElementById('privacySubmenu');
         const privacyLink = e.target.closest('li')?.querySelector('[onclick*="togglePrivacyMenu"]');
@@ -1610,7 +1730,32 @@
         }
     });
 
+    // Initialize carousel when DOM is loaded
     document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM loaded, initializing carousel');
         initCarousel();
+
+        // Ensure mobile icon links work properly
+        const mobileIconLinks = document.querySelectorAll('.mobile-icon-link');
+        mobileIconLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('Mobile icon link clicked:', this.href);
+                // Force the link to open
+                if (this.href && this.href !== '#') {
+                    window.open(this.href, '_blank', 'noopener,noreferrer');
+                }
+            });
+        });
+
+        // Ensure all external links work on mobile
+        const externalLinks = document.querySelectorAll('a[target="_blank"]');
+        externalLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.href && this.href !== '#') {
+                    console.log('External link clicked:', this.href);
+                }
+            });
+        });
     });
 </script>
