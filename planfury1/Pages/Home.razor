@@ -54,6 +54,7 @@
     .mobile-menu-header .logo img {
         height: 40px;
     }
+
     .nav-menu {
         display: flex;
         list-style: none;
@@ -71,69 +72,132 @@
                 color: #ff6b35;
             }
 
-    .get-started-icons {
+    .product-label.bms {
+        color: #333;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .product-label.bms:hover {
+            color: #ff6b35;
+        }
+
+    /* Product Links with Icons */
+    .product-buttons {
         display: flex;
-        gap: 0.5rem;
+        gap: 2rem;
         align-items: center;
     }
 
-    .icon-link {
+    .product-group {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        position: relative;
+    }
+
+        /* Even spacing & vertically centered divider */
+        .product-group + .product-group {
+            padding-left: 1.25rem;
+            margin-left: 1.25rem;
+        }
+
+            .product-group + .product-group::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                height: 28px;
+                width: 1px;
+                background: #ddd;
+            }
+
+    .product-label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #333;
+        white-space: nowrap;
+    }
+
+        /* BMS label plain like Invoicing, but clickable (as requested) */
+        .product-label.bms {
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+            .product-label.bms:hover {
+                color: #ff6b35;
+            }
+
+    /* Teal link for Windows App */
+    .windows-app-link {
+        color: #4C9195; /* teal */
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+
+        .windows-app-link:hover {
+            text-decoration: underline;
+        }
+
+    .product-icons {
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+    }
+
+    .product-icon-link {
         position: relative;
         display: block;
-        width: 40px;
-        height: 40px;
-        border-radius: 10px; /* Rounded square */
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
         overflow: hidden;
         transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         background: white;
     }
 
-        .icon-link img {
+        .product-icon-link img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Shows full icon */
-            padding: 3px; /* Prevents cutting */
+            object-fit: contain;
+            padding: 3px;
         }
 
-        .icon-link:hover {
+        .product-icon-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
         }
 
-       
-
-    .icon-tooltip {
+    .product-icon-tooltip {
         position: absolute;
         bottom: -35px;
         left: 50%;
         transform: translateX(-50%);
         background: rgba(51, 51, 51, 0.95);
         color: white;
-        padding: 0.4rem 0.8rem;
+        padding: 0.4rem 0.7rem;
         border-radius: 5px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         white-space: nowrap;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s, bottom 0.3s;
+        z-index: 10;
     }
 
-    .icon-link:hover .icon-tooltip {
+    .product-icon-link:hover .product-icon-tooltip {
         opacity: 1;
         bottom: -40px;
     }
 
-    @@media (max-width: 768px) {
-    .get-started-icons {
-        gap: 0.3rem;
-    }
-    
-    .icon-link {
-        width: 35px;
-        height: 35px;
-    }
-}
     .cta-button {
         background: #ff6b35;
         color: white;
@@ -179,6 +243,7 @@
         background: white;
         transition: right 0.3s ease;
         padding: 2rem;
+        overflow-y: auto;
     }
 
     .mobile-menu.active .mobile-menu-content {
@@ -222,6 +287,45 @@
             .mobile-menu-items a:hover {
                 color: #ff6b35;
             }
+
+    .mobile-products-section {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+
+        .mobile-products-section h4 {
+            color: #ff6b35;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+    .mobile-dropdown-icons {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+
+    .mobile-icon-link {
+        display: block;
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        background: white;
+    }
+
+        .mobile-icon-link img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 3px;
+        }
 
     /* Animated Text Carousel Hero Section */
     .carousel-hero {
@@ -348,51 +452,6 @@
         max-width: 90%;
         margin-bottom: 2rem;
     }
-
-    .slide-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        width: 100%;
-        max-width: 90%;
-    }
-
-    .btn-primary {
-        background: #ff6b35;
-        color: white;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-    }
-
-        .btn-primary:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-        }
-
-    .btn-secondary {
-        background: transparent;
-        color: #333;
-        padding: 15px 30px;
-        border: 2px solid #333;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s;
-    }
-
-        .btn-secondary:hover {
-            background: #333;
-            color: white;
-        }
 
     /* Carousel Controls */
     .carousel-controls {
@@ -548,53 +607,6 @@
         font-size: 0.95rem;
     }
 
-    .product-actions {
-        display: flex;
-        gap: 0.5rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-    }
-
-    .download-section {
-        display: flex;
-        gap: 0.5rem;
-        justify-content: center;
-        margin: 1rem 0;
-        flex-wrap: wrap;
-    }
-
-    .app-store-btn {
-        display: inline-block;
-        transition: transform 0.3s;
-    }
-
-        .app-store-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .app-store-btn img {
-            height: 35px;
-            width: auto;
-        }
-
-    .know-more-btn {
-        background: #ff6b35;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        text-decoration: none;
-        font-weight: 600;
-        display: inline-block;
-        transition: background 0.3s;
-        font-size: 0.9rem;
-    }
-
-        .know-more-btn:hover {
-            background: #e55a2b;
-        }
-
     /* About Section */
     .about {
         padding: 100px 0;
@@ -686,12 +698,12 @@
 
     .footer-content {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Changed from auto-fit to fixed 3 columns */
-        gap: 3rem; /* Increased gap */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
         margin-bottom: 2rem;
         text-align: left;
-        max-width: 1200px; /* Add max-width */
-        margin-left: auto; /* Center the grid */
+        max-width: 1200px;
+        margin-left: auto;
         margin-right: auto;
     }
 
@@ -701,7 +713,7 @@
     }
 
         .footer-section h3 {
-            margin-bottom: 1.5rem; /* Increased spacing */
+            margin-bottom: 1.5rem;
             color: #ff6b35;
             font-size: 1.1rem;
         }
@@ -712,7 +724,7 @@
         }
 
             .footer-section ul li {
-                margin-bottom: 0.75rem; /* Increased spacing */
+                margin-bottom: 0.75rem;
             }
 
                 .footer-section ul li a {
@@ -761,6 +773,7 @@
                 background: #f8f9fa;
                 color: #ff6b35 !important;
             }
+
     /* Contact Sidebar */
     .contact-sidebar {
         position: fixed;
@@ -900,6 +913,10 @@
             display: block;
         }
 
+        .product-buttons {
+            display: none;
+        }
+
         .carousel-container {
             padding: 0 1rem;
             height: 100vh;
@@ -934,10 +951,6 @@
                 height: 100%;
                 object-fit: cover;
             }
-
-        .slide-buttons {
-            justify-content: center;
-        }
 
         .carousel-nav {
             width: 40px;
@@ -1030,14 +1043,6 @@
                 <a href="mailto:info@planfury.nl">info@planfury.nl</a>
             </div>
         </div>
-     @*    <div class="contact-info-item">
-            <span class="contact-info-label">Address</span>
-            <div class="contact-info-value">
-                #438, Street 3, Randhawa Colony,<br>
-                Mukerian - 144211,<br>
-                Punjab, India
-            </div>
-        </div> *@
     </div>
 </div>
 
@@ -1056,6 +1061,60 @@
             <li><a href="#about" onclick="toggleMobileMenu()">About Us</a></li>
             <li><a href="#" onclick="toggleMobileMenu(); toggleContactSidebar();">Contact</a></li>
         </ul>
+
+        <!-- Mobile Products Section -->
+        <div class="mobile-products-section">
+            <h4>BMS - Planfury Task Tracker</h4>
+            <div class="mobile-dropdown-icons">
+                <!-- BMS link (updated for direct download) -->
+                <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg"
+                   class="product-label bms"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   title="Business Management Solution">
+                    BMS
+                </a>
+
+                <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg"
+                   class="windows-app-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   title="Planfury Task Tracker Windows App">
+                    Windows App
+                </a>
+
+                <a href="https://play.google.com/store/apps/details?id=com.planfury.tasktracker"
+                   class="mobile-icon-link"
+                   title="Planfury Task Tracker Play Store">
+                    <img src="Img/newplaystore.png" alt="Android">
+                </a>
+
+                <a href="https://apps.apple.com/in/app/planfury-task-tracker/id6754032458"
+                   class="mobile-icon-link"
+                   title="Planfury Task Tracker App Store">
+                    <img src="Img/apppstore.png" alt="iOS">
+                </a>
+            </div>
+
+            <h4>Planfury Invoicing</h4>
+            <div class="mobile-dropdown-icons">
+                <a href="https://invoicing.planfury.com"
+                   class="mobile-icon-link"
+                   title="Planfury Invoicing Web App">
+                    <img src="Img/new planfuryyylogog image.png" alt="Website">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.planfury.invoicing&pcampaignid=web_share"
+                   class="mobile-icon-link"
+                   title="Planfury Invoicing Play Store">
+                    <img src="Img/newplaystore.png" alt="Android">
+                </a>
+                <a href="https://apps.apple.com/in/app/planfury-invoicing/id6754972187"
+                   class="mobile-icon-link"
+                   title="Planfury Invoicing App Store">
+                    <img src="Img/apppstore.png" alt="iOS">
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -1066,26 +1125,82 @@
             <a href="#" class="logo">
                 <img src="img/planfury logo.png" alt="Planfury Logo" style="height: 50px; width: auto;">
             </a>
+
             <ul class="nav-menu">
                 <li><a href="#products">Products</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#" onclick="toggleContactSidebar(); return false;">Contact</a></li>
             </ul>
+
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <div class="get-started-icons">
-                    <a href="https://invoicing.planfury.com" class="icon-link" title="Invoicing for Website">
-                        <img src="Img/new planfuryyylogog image.png" alt="Website">
-                        <span class="icon-tooltip">Invoicing for Website</span>
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.planfury.invoicing&pcampaignid=web_share" class="icon-link" title="Invoicing for Android">
-                        <img src="Img/newplaystore.png" alt="Android">
-                        <span class="icon-tooltip">Invoicing for Android</span>
-                    </a>
-                    <a href="https://apps.apple.com/in/app/planfury-invoicing/id6754972187" class="icon-link" title="Invoicing for iOS">
-                        <img src="Img/apppstore.png" alt="iOS">
-                        <span class="icon-tooltip">Invoicing for IOS</span>
-                    </a>
+                <!-- Product Links with Icons -->
+                <div class="product-buttons">
+
+                    <!-- Invoicing Group -->
+                    <div class="product-group">
+                        <span class="product-label">Invoicing</span>
+                        <div class="product-icons">
+                            <a href="https://invoicing.planfury.com"
+                               class="product-icon-link"
+                               title="Planfury Invoicing Web App">
+                                <img src="Img/new planfuryyylogog image.png" alt="Web">
+                                <span class="product-icon-tooltip">Planfury Invoicing Web App</span>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.planfury.invoicing&pcampaignid=web_share"
+                               class="product-icon-link"
+                               title="Planfury Invoicing Play Store">
+                                <img src="Img/newplaystore.png" alt="Play Store">
+                                <span class="product-icon-tooltip">Planfury Invoicing Playstore</span>
+                            </a>
+                            <a href="https://apps.apple.com/in/app/planfury-invoicing/id6754972187"
+                               class="product-icon-link"
+                               title="Planfury Invoicing App Store">
+                                <img src="Img/apppstore.png" alt="App Store">
+                                <span class="product-icon-tooltip">Planfury Invoicing Appstore</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- BMS Group -->
+                    <div class="product-group">
+                        <!-- BMS link (updated for direct download) -->
+                        <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg"
+                           class="product-label bms"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           title="BMS Windows App">
+                            BMS
+                        </a>
+
+                        <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg"
+                           class="product-icon-link windows-icon-link"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           title="Planfury Windows App">
+                            <img src="Img/Windows-New-Logo.png" alt="Windows App">
+                            <span class="product-icon-tooltip">Planfury Windows App</span>
+                        </a>
+
+
+                        <div class="product-icons">
+                            <a href="https://play.google.com/store/apps/details?id=com.planfury.tasktracker"
+                               class="product-icon-link"
+                               title="Planfury Task Tracker Play Store">
+                                <img src="Img/newplaystore.png" alt="Play Store">
+                                <span class="product-icon-tooltip">Planfury Task Tracker Playstore</span>
+                            </a>
+
+                            <a href="https://apps.apple.com/in/app/planfury-task-tracker/id6754032458"
+                               class="product-icon-link"
+                               title="Planfury Task Tracker App Store">
+                                <img src="Img/apppstore.png" alt="App Store">
+                                <span class="product-icon-tooltip">Planfury Task Tracker Appstore</span>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
+
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
             </div>
         </nav>
@@ -1183,7 +1298,7 @@
 <!-- Products Section -->
 <section class="products" id="products">
     <div class="container">
-        <h2 class="section-title">Our Products </h2>
+        <h2 class="section-title">Our Products</h2>
 
         <div class="products-grid">
             <!-- Business Management System -->
@@ -1193,22 +1308,6 @@
                 </div>
                 <h3>Business Management System</h3>
                 <p>A Business Management System (BMS) is an integrated software solution designed to help organizations streamline, organize, and control their core operations. It combines various business processes—such as finance, human resources, sales, customer relationship management, inventory, and project management—into a single, centralized platform.</p>
-
-               @*  <div class="download-section">
-                    <a href="#" class="app-store-btn">
-                        <img src="img/google paly.png" alt="Get it on Google Play" />
-                    </a>
-                    <a href="#" class="app-store-btn">
-                        <img src="img/ios apple .png" alt="Download on the App Store" />
-                    </a>
-                    <a href="#" class="app-store-btn">
-                        <img src="img/bms.jpg" alt="BMS Icon" />
-                    </a>
-                </div> *@
-
-              @*   <div class="product-actions">
-                    <a href="" class="know-more-btn">KNOW MORE</a>
-                </div> *@
             </div>
 
             <!-- Invoicing -->
@@ -1218,22 +1317,6 @@
                 </div>
                 <h3>Invoicing</h3>
                 <p>Our invoicing application is a complete billing and financial management solution designed for freelancers, small businesses, and enterprises. It allows users to create customized, professional invoices, track payments in real time, and set automated reminders to reduce delays. The app supports multiple currencies, tax configurations, and integrated payment gateways for seamless transactions.</p>
-
-               @*  <div class="download-section">
-                    <a href="#" class="app-store-btn">
-                        <img src="img/google paly.png" alt="Get it on Google Play" />
-                    </a>
-                    <a href="#" class="app-store-btn">
-                        <img src="img/ios apple .png" alt="Download on the App Store" />
-                    </a>
-                    <a href="https://planfuryinvoicingwebapp.azurewebsites.net/" class="app-store-btn">
-                        <img src="img/invoicing.jpg" alt="Invoicing Icon" />
-                    </a>
-                </div> *@
-
-         @*        <div class="product-actions">
-                    <a href="" class="know-more-btn">KNOW MORE</a>
-                </div> *@
             </div>
         </div>
     </div>
@@ -1270,14 +1353,22 @@
             <div class="footer-section">
                 <h3>Products</h3>
                 <ul>
-                    <li><a href="">Business Management System</a></li>
-                    <li><a href="">Invoicing</a></li>
+                    <li>
+                        <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg" target="_blank" rel="noopener noreferrer">
+                            Business Management System
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://invoicing.planfury.com" target="_blank" rel="noopener noreferrer">
+                            Invoicing
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Company</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#about">About Us</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -1286,12 +1377,12 @@
                     <li><a href="#" onclick="toggleContactSidebar(); return false;">Contact</a></li>
                     <li><a href="#">Help Center</a></li>
                     <li style="position: relative;">
-    <a href="#" onclick="togglePrivacyMenu(event)">Privacy Policy</a>
-    <div class="privacy-submenu" id="privacySubmenu">
-        <a href="/app/bmstasktracker/privacypolicy">BMS</a>
-        <a href="/app/invoicing/privacypolicy">Invoicing</a>
-    </div>
-</li>
+                        <a href="#" onclick="togglePrivacyMenu(event)">Privacy Policy</a>
+                        <div class="privacy-submenu" id="privacySubmenu">
+                            <a href="/app/bmstasktracker/privacypolicy">BMS</a>
+                            <a href="/app/invoicing/privacypolicy">Invoicing</a>
+                        </div>
+                    </li>
                     <li><a href="#">Terms of Service</a></li>
                 </ul>
             </div>
@@ -1311,13 +1402,11 @@
     let autoplayInterval;
     let isAutoplayRunning = true;
 
-    // Initialize carousel
     function initCarousel() {
         showSlide(0);
         startAutoplay();
     }
 
-    // Show specific slide with horizontal slide animation
     function showSlide(index) {
         slideItems.forEach((item, i) => {
             item.classList.remove('active', 'exit-right');
@@ -1333,7 +1422,6 @@
         dots[currentSlide].classList.add('active');
     }
 
-    // Go to specific slide (for dots)
     function goToSlide(index) {
         if (index !== currentSlide) {
             showSlide(index);
@@ -1341,7 +1429,6 @@
         }
     }
 
-    // Change slide (for navigation arrows)
     function changeSlide(direction) {
         let newSlide = currentSlide + direction;
 
@@ -1355,19 +1442,16 @@
         resetAutoplay();
     }
 
-    // Start autoplay
     function startAutoplay() {
         autoplayInterval = setInterval(() => {
             changeSlide(1);
         }, 4000);
     }
 
-    // Stop autoplay
     function stopAutoplay() {
         clearInterval(autoplayInterval);
     }
 
-    // Reset autoplay
     function resetAutoplay() {
         if (isAutoplayRunning) {
             stopAutoplay();
@@ -1375,7 +1459,6 @@
         }
     }
 
-    // Toggle autoplay
     function toggleAutoplay() {
         const playPauseBtn = document.getElementById('playPauseBtn');
 
@@ -1390,7 +1473,6 @@
         }
     }
 
-    // Pause autoplay on hover
     document.querySelector('.carousel-hero').addEventListener('mouseenter', () => {
         if (isAutoplayRunning) stopAutoplay();
     });
@@ -1399,7 +1481,6 @@
         if (isAutoplayRunning) startAutoplay();
     });
 
-    // Touch/Swipe support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -1425,7 +1506,6 @@
         }
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
             changeSlide(-1);
@@ -1464,14 +1544,12 @@
         }
     }
 
-    // Close mobile menu when clicking outside
     document.getElementById('mobileMenu').addEventListener('click', function (e) {
         if (e.target === this) {
             toggleMobileMenu();
         }
     });
 
-    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -1491,15 +1569,12 @@
         });
     });
 
-    // Newsletter form handling
     document.querySelector('.newsletter-form').addEventListener('submit', function (e) {
         e.preventDefault();
-        const email = this.querySelector('input[type="email"]').value;
         alert('Thank you for subscribing! We will keep you updated with the latest news from Planfury.');
         this.reset();
     });
 
-    // Header scroll effect
     window.addEventListener('scroll', function () {
         const header = document.querySelector('.header');
         if (window.scrollY > 100) {
@@ -1511,7 +1586,6 @@
         }
     });
 
-    // Close mobile menu on window resize
     window.addEventListener('resize', function () {
         if (window.innerWidth > 768) {
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1520,48 +1594,6 @@
         }
     });
 
-    // Language detection and translation
-    function detectLanguage() {
-        // Check browser language
-        const userLang = navigator.language || navigator.userLanguage;
-        return userLang.toLowerCase().startsWith('nl') ? 'nl' : 'en';
-    }
-
-    // Translations object
-    const translations = {
-        en: {
-            invoicingWebsite: "Invoicing for Website",
-            invoicingAndroid: "Invoicing for Android",
-            invoicingIOS: "Invoicing for IOS"
-        },
-        nl: {
-            invoicingWebsite: "Facturering voor Website",
-            invoicingAndroid: "Facturering voor Android",
-            invoicingIOS: "Facturering voor IOS"
-        }
-    };
-
-    // Apply translations on page load
-    function applyTranslations() {
-        const lang = detectLanguage();
-        const tooltips = document.querySelectorAll('.icon-tooltip');
-
-        if (tooltips.length >= 3) {
-            tooltips[0].textContent = translations[lang].invoicingWebsite;
-            tooltips[1].textContent = translations[lang].invoicingAndroid;
-            tooltips[2].textContent = translations[lang].invoicingIOS;
-        }
-    }
-
-    // Initialize everything when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function () {
-        initCarousel();
-        applyTranslations();
-    });
-</script>
-
-<script>
-
     function togglePrivacyMenu(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -1569,7 +1601,6 @@
         submenu.classList.toggle('active');
     }
 
-    // Close privacy submenu when clicking outside
     document.addEventListener('click', function (e) {
         const submenu = document.getElementById('privacySubmenu');
         const privacyLink = e.target.closest('li')?.querySelector('[onclick*="togglePrivacyMenu"]');
@@ -1577,5 +1608,9 @@
         if (submenu && !e.target.closest('.privacy-submenu') && e.target !== privacyLink) {
             submenu.classList.remove('active');
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCarousel();
     });
 </script>
