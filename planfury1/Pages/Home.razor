@@ -259,7 +259,7 @@
         position: absolute;
         top: 0;
         right: -100%;
-        width: 300px;
+        width: 320px;
         height: 100%;
         background: white;
         transition: right 0.3s ease;
@@ -334,57 +334,69 @@
 
     .mobile-products-section {
         margin: 1.5rem 0;
-        padding: 1rem;
+        padding: 1.5rem;
         background: #f8f9fa;
-        border-radius: 10px;
+        border-radius: 15px;
+        border-left: 4px solid #ff6b35;
     }
 
         .mobile-products-section h4 {
             color: #ff6b35;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
             text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
     .mobile-dropdown-icons {
         display: flex;
-        gap: 0.75rem;
+        gap: 0.9rem;
         flex-wrap: wrap;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         align-items: center;
+        justify-content: flex-start;
     }
 
     .mobile-icon-link {
         display: block;
-        width: 45px;
-        height: 45px;
-        border-radius: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
         background: white;
         text-decoration: none;
-        transition: transform 0.3s, box-shadow 0.3s;
+        transition: all 0.3s ease;
         cursor: pointer;
         position: relative;
-        z-index: 1;
+        border: 2px solid transparent;
     }
 
         .mobile-icon-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+            border-color: #ff6b35;
         }
 
         .mobile-icon-link:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
         .mobile-icon-link img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            padding: 3px;
+            padding: 4px;
             pointer-events: none;
         }
+
+    /* Product separator line */
+    .mobile-products-section + .mobile-products-section {
+        border-top: 2px solid #e0e0e0;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
 
     /* Animated Text Carousel Hero Section */
     .carousel-hero {
@@ -1087,6 +1099,16 @@
 
         .mobile-menu-content {
             padding: 1.5rem;
+            width: 280px;
+        }
+
+        .mobile-icon-link {
+            width: 45px;
+            height: 45px;
+        }
+
+        .mobile-dropdown-icons {
+            gap: 0.7rem;
         }
     }
 </style>
@@ -1132,43 +1154,7 @@
 
         <!-- Mobile Products Section -->
         <div class="mobile-products-section">
-            <h4>BMS </h4>
-            <div class="mobile-dropdown-icons">
-                <!-- BMS link (updated for direct download) -->
-                <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg"
-                   class="product-label bms"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   title="Business Management Solution">
-                    BMS
-                </a>
-
-                <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg"
-                   class="windows-app-link"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   title="Planfury Task Tracker Windows App">
-                    Windows App
-                </a>
-
-                <a href="https://play.google.com/store/apps/details?id=com.planfury.tasktracker"
-                   class="mobile-icon-link"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   title="Planfury Task Tracker Play Store">
-                    <img src="Img/newplaystore.png" alt="Android">
-                </a>
-
-                <a href="https://apps.apple.com/in/app/planfury-task-tracker/id6754032458"
-                   class="mobile-icon-link"
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   title="Planfury Task Tracker App Store">
-                    <img src="Img/apppstore.png" alt="iOS">
-                </a>
-            </div>
-
-            <h4>Planfury Invoicing</h4>
+            <h4>Invoicing</h4>
             <div class="mobile-dropdown-icons">
                 <a href="https://invoicing.planfury.com"
                    class="mobile-icon-link"
@@ -1189,6 +1175,33 @@
                    target="_blank"
                    rel="noopener noreferrer"
                    title="Planfury Invoicing App Store">
+                    <img src="Img/apppstore.png" alt="iOS">
+                </a>
+            </div>
+        </div>
+
+        <div class="mobile-products-section">
+            <h4>BMS</h4>
+            <div class="mobile-dropdown-icons">
+                <a href="https://drive.google.com/uc?export=download&id=1JrNPo1ngnod_gWLA375PcpZ9lXled6sg"
+                   class="mobile-icon-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   title="BMS Windows App">
+                    <img src="Img/Windows-New-Logo.png" alt="Windows App">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.planfury.tasktracker"
+                   class="mobile-icon-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   title="Planfury Task Tracker Play Store">
+                    <img src="Img/newplaystore.png" alt="Android">
+                </a>
+                <a href="https://apps.apple.com/in/app/planfury-task-tracker/id6754032458"
+                   class="mobile-icon-link"
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   title="Planfury Task Tracker App Store">
                     <img src="Img/apppstore.png" alt="iOS">
                 </a>
             </div>
